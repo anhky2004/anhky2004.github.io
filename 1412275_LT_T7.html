@@ -26,13 +26,10 @@
 },false);
 
 function draw(v,c,bc,w,h) {
-    if(v.paused || v.ended) return false;
-    // First, draw it into the backing canvas
-    bc.drawImage(v,0,0,w,h);
-    // Grab the pixel data from the backing canvas
+    if(v.paused || v.ended) return false;    
+    bc.drawImage(v,0,0,w,h);  
     var idata = bc.getImageData(0,0,w,h);
-    var data = idata.data;
-    // Loop through the pixels, turning them grayscale
+    var data = idata.data;    
     for(var i = 0; i < data.length; i+=4) {
         var r = data[i];
         var g = data[i+1];
@@ -42,10 +39,8 @@ function draw(v,c,bc,w,h) {
         data[i+1] = brightness;
         data[i+2] = brightness;
     }
-    idata.data = data;
-    // Draw the pixels onto the visible canvas
+    idata.data = data;   
     c.putImageData(idata,0,0);
-    // Start over!
     setTimeout(function(){ draw(v,c,bc,w,h); }, 0);
 }
 	</script>
@@ -56,10 +51,12 @@ function draw(v,c,bc,w,h) {
 	</style>
 </head>
 <body>
-	<video id=v controls loop autoplay>
-    <source src=ahihi.mp4>
+	<video id="v" controls loop autoplay>
+    <source src=ahihi.webm type=video/webm>
+    <source src=ahihi.ogg type=video/ogg>
+    <source src=ahihi.mp4 type=video/mp4>
 	</video>
-<canvas id=c></canvas>
+<canvas id="c"></canvas>
 
 </body>
 </html>
