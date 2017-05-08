@@ -3,7 +3,7 @@ var path = require('path');
 var app = express();
 
 // Define the port to run on
-app.set('port', 4444);
+app.set('port', 3333);
 
 app.use(express.static(__dirname));
 
